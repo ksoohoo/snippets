@@ -2,22 +2,33 @@
     <head>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link id="lnk-questrial" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+        <!-- <link id="lnk-roboto" href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> -->
     </head>
     <body>
-        <div style="font-family:'Questrial'; color: rgb(57, 34, 189)">Testing Font</div>
+        <div style="font-family:'Roboto'; color: rgb(57, 34, 189)">Testing Font</div>
+        <div style="font-family:'Roboto Slab'; color: rgb(57, 34, 189)">Testing Font</div>
         <canvas id=c width=1000 height=1000></canvas>
     </body>
     <script type="text/javascript">
-        const questrialFont = new FontFace("Questrial", "url(https://fonts.gstatic.com/s/questrial/v18/QdVUSTchPBm7nuUeVf70viFl.woff2)");
-        questrialFont.load().then((questrial) => {
-            document.fonts.add(questrial);
+        const fontLoaders = [
+            (new FontFace("Roboto", "url(https://fonts.gstatic.com/s/roboto/v32/KFOlCnqEu92Fr1MmWUlfBBc4.woff2)")).load(),
+            (new FontFace("Roboto Slab", "url(https://fonts.gstatic.com/s/robotoslab/v34/BngMUXZYTXPIvIBgJJSb6ufN5qU.woff2)")).load()
+        ];
+
+        Promise.all(fontLoaders).then(r => {
+            r.forEach(font => {
+                console.log(font);
+                document.fonts.add(font);
+            });
+
             var ctx = document.getElementById('c').getContext('2d');
-            ctx.font = "bold 50px Questrial";
+            ctx.font = "bold 50px Roboto Slab";
             ctx.fillStyle = 'rgb(57, 34, 189)';
             ctx.textBaseline = 'top';
             ctx.fillText  ("Mother Mother Let's go for a walk", 20, 20);
+        }).catch(r => { 
+            console.log("Promise.all failed", r);
+            alert("Caught error - check the console");
         });
-        
     </script>
 </html>
