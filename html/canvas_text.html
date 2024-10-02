@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link id="lnk-questrial" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div style="font-family:'Questrial'; color: rgb(57, 34, 189)">Testing Font</div>
+        <canvas id=c width=1000 height=1000></canvas>
+    </body>
+    <script type="text/javascript">
+        const questrialFont = new FontFace("Questrial", "url(https://fonts.gstatic.com/s/questrial/v18/QdVUSTchPBm7nuUeVf70viFl.woff2)");
+        questrialFont.load().then((questrial) => {
+            document.fonts.add(questrial);
+            var ctx = document.getElementById('c').getContext('2d');
+            ctx.font = "bold 50px Questrial";
+            ctx.fillStyle = 'rgb(57, 34, 189)';
+            ctx.textBaseline = 'top';
+            ctx.fillText  ("Mother Mother Let's go for a walk", 20, 20);
+        });
+        
+    </script>
+</html>
